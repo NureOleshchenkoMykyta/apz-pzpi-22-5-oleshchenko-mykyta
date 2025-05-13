@@ -1,0 +1,98 @@
+[
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\layout_note_item.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\layout\\note_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\layout_activity_notes.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\layout\\activity_notes.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\layout_activity_results.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\layout\\activity_results.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\layout_result_item.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\layout\\result_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\xml_network_security_config.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.apz.app-debug-63:/layout_activity_results.xml.flat",
+        "source": "com.example.apz.app-main-65:/layout/activity_results.xml"
+    },
+    {
+        "merged": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-debug-63:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\olesh\\.gradle\\daemon\\8.11.1\\com.example.apz.app-main-65:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    }
+]
