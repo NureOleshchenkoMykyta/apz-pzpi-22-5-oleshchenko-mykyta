@@ -30,8 +30,7 @@ console.log("ConcreteStateB");
 }
 }
 
- const context = new Context(new
-ConcreteStateA());
+ const context = new Context(new ConcreteStateA());
 context.handle();
 context.setState(new ConcreteStateB());
 context.handle();
