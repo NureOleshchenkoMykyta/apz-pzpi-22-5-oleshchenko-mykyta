@@ -1,1 +1,705 @@
+Міністерство освіти та науки України 
 
+Харківський національний університет радіоелектроніки 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Лабораторна робота №2 
+
+з дисципліни: «Архітектура програмного забезпечення» 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Виконав 
+
+ст. гр. ПЗПІ-22-5 
+
+Олещенко Микита Сергійович 
+
+ 
+
+                                        
+
+                                       Перевірив 
+
+                                       Дашенков Д.С. 
+
+ 
+
+ 
+
+ 
+
+Харків 2025 
+
+ 
+
+ 
+
+Лабораторна робота №2 
+
+ 
+
+Мета: Розробка мобільного програмного застосунку 
+
+ 
+
+Хід роботи 
+
+ 
+
+Розроблено наступні діаграми: 
+
+Use Case Diagram – загальна функціональність системи (див. Додаток А) 
+
+Component Diagram – компоненти та взаємодія між ними (див. Додаток Б) 
+
+State Diagram – зміна станів системи (див. Додаток В) 
+
+ER-діаграма – структура бази даних (див. Додаток Г) 
+
+ 
+
+Розроблено мобільний додаток: 
+
+Фронтенд реалізовано на Kotlin для Android з використанням архітектури MVVM, компонентів Material Design, LiveData, ViewModel 
+
+Бекенд розгорнуто на Python з використанням FastAPI — реалізовано авторизацію, API для роботи з акаунтами, нотатками та результатами аналізу 
+
+ 
+
+Здійснено повну інтеграцію між клієнтом та сервером, включно з: 
+
+авторизацією користувача 
+
+додаванням та редагуванням нотаток 
+
+отриманням результатів 
+
+фільтрацією та оновленням інтерфейсу в реальному часі 
+
+Репозиторій у Github: https://github.com/NureOleshchenkoMykyta/apz-pzpi-22-5-oleshchenko-mykyta/tree/main/Lab2 
+
+ 
+
+ 
+
+ 
+
+Висновок: 
+
+У процесі виконання лабораторної роботи було створено повноцінну архітектурну модель системи та реалізовано прототип мобільного додатку. Результати демонструють ефективну інтеграцію клієнт-серверної взаємодії, що підтверджує коректність обраної архітектури та технологій. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ДОДАТОК А 
+
+Use Case Diagram 
+
+Рисунок 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ДОДАТОК Б 
+
+Component Diagram 
+
+Рисунок 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ДОДАТОК В 
+
+State Diagram 
+
+Рисунок 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ДОДАТОК Г 
+
+ER-діаграма 
+
+Рисунок 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ДОДАТОК Д 
+
+Приклад програмного коду (Уривок з файлу ResultsActivity.kt) 
+
+1. package com.example.apz.ui 
+
+2.  
+
+3. import com.example.apz.models.NoteRequest 
+
+4. import android.content.Intent 
+
+5. import android.os.Bundle 
+
+6. import android.util.Log 
+
+7. import android.view.View 
+
+8. import android.widget.* 
+
+9. import androidx.activity.ComponentActivity 
+
+10. import androidx.appcompat.app.AlertDialog 
+
+11. import androidx.core.view.children 
+
+12. import androidx.lifecycle.ViewModelProvider 
+
+13. import com.example.apz.R 
+
+14. import com.example.apz.api.RetrofitInstance 
+
+15. import com.example.apz.repository.ApiRepository 
+
+16. import com.example.apz.storage.getEmail 
+
+17. import com.example.apz.viewmodel.NotesViewModel 
+
+18. import com.example.apz.viewmodel.ResultsViewModel 
+
+19. import com.example.apz.viewmodel.ViewModelFactory 
+
+20. import kotlinx.coroutines.CoroutineScope 
+
+21. import kotlinx.coroutines.Dispatchers 
+
+22. import kotlinx.coroutines.launch 
+
+23.  
+
+24. class ResultsActivity : ComponentActivity() { 
+
+25.  
+
+26.     private lateinit var resultViewModel: ResultsViewModel 
+
+27.     private lateinit var noteViewModel: NotesViewModel 
+
+28.     private lateinit var resultsContainer: LinearLayout 
+
+29.     private lateinit var notesContainer: LinearLayout 
+
+30.     private var sortDescending = true 
+
+31.  
+
+32.     override fun onCreate(savedInstanceState: Bundle?) { 
+
+33.         super.onCreate(savedInstanceState) 
+
+34.         setContentView(R.layout.activity_results) 
+
+35.  
+
+36.         val email = getEmail(this) 
+
+37.         if (email == null) { 
+
+38.             Toast.makeText(this, "Email відсутній, повторіть вхід", Toast.LENGTH_LONG).show() 
+
+39.             finish() 
+
+40.             return 
+
+41.         } 
+
+42.  
+
+43.         val factory = ViewModelFactory(ApiRepository(RetrofitInstance.api), application) 
+
+44.         resultViewModel = ViewModelProvider(this, factory)[ResultsViewModel::class.java] 
+
+45.         noteViewModel = ViewModelProvider(this, factory)[NotesViewModel::class.java] 
+
+46.  
+
+47.         resultsContainer = findViewById(R.id.resultsContainer) 
+
+48.         notesContainer = findViewById(R.id.notesContainer) 
+
+49.         val input = findViewById<EditText>(R.id.stressLevelInput) 
+
+50.         val addButton = findViewById<Button>(R.id.addResultButton) 
+
+51.         val logoutButton = findViewById<Button>(R.id.buttonLogout) 
+
+52.         val sortSpinner = findViewById<Spinner>(R.id.sortSpinner) 
+
+53.         val addNoteButton = findViewById<Button>(R.id.addNoteButton) 
+
+54.  
+
+55.         val sortOptions = listOf("Сортувати: нові → старі", "Сортувати: старі → нові") 
+
+56.         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sortOptions) 
+
+57.         sortSpinner.adapter = spinnerAdapter 
+
+58.         sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener { 
+
+59.             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) { 
+
+60.                 sortDescending = position == 0 
+
+61.                 resultViewModel.getResults(this@ResultsActivity) 
+
+62.             } 
+
+63.             override fun onNothingSelected(parent: AdapterView<*>) {} 
+
+64.         } 
+
+65.  
+
+66.         resultViewModel.results.observe(this) { results -> displayResults(results) } 
+
+67.         noteViewModel.notes.observe(this) { notes -> displayNotes(notes) } 
+
+68.         resultViewModel.message.observe(this) { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() } 
+
+69.         noteViewModel.message.observe(this) { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() } 
+
+70.  
+
+71.         addButton.setOnClickListener { 
+
+72.             val level = input.text.toString().toIntOrNull() 
+
+73.             if (level != null) { 
+
+74.                 resultViewModel.addResult(this, level) 
+
+75.                 input.text.clear() 
+
+76.             } else { 
+
+77.                 Toast.makeText(this, "Некоректне значення", Toast.LENGTH_SHORT).show() 
+
+78.             } 
+
+79.         } 
+
+80.  
+
+81.         addNoteButton.setOnClickListener { 
+
+82.             val emailVal = getEmail(this) 
+
+83.             val role = getSharedPreferences("APP_PREFS", MODE_PRIVATE).getString("role", null) 
+
+84.  
+
+85.             if (emailVal == null || role == null) { 
+
+86.                 Toast.makeText(this, "Неможливо створити нотатку — не знайдено email або роль", Toast.LENGTH_SHORT).show() 
+
+87.                 return@setOnClickListener 
+
+88.             } 
+
+89.  
+
+90.             val input = EditText(this) 
+
+91.             AlertDialog.Builder(this) 
+
+92.                 .setTitle("Нова нотатка") 
+
+93.                 .setView(input) 
+
+94.                 .setPositiveButton("Зберегти") { _, _ -> 
+
+95.                     val text = input.text.toString() 
+
+96.                     CoroutineScope(Dispatchers.IO).launch { 
+
+97.                         try { 
+
+98.                             val response = RetrofitInstance.api.addNote( 
+
+99.                                 email = emailVal, 
+
+100.                                 role = role, 
+
+101.                                 request = NoteRequest(text) 
+
+102.                             ) 
+
+103.                             if (response.isSuccessful) { 
+
+104.                                 runOnUiThread { 
+
+105.                                     noteViewModel.getNotes() 
+
+106.                                     Toast.makeText(this@ResultsActivity, "Нотатку додано", Toast.LENGTH_SHORT).show() 
+
+107.                                 } 
+
+108.                             } else { 
+
+109.                                 runOnUiThread { 
+
+110.                                     Toast.makeText(this@ResultsActivity, "Помилка при створенні нотатки", Toast.LENGTH_SHORT).show() 
+
+111.                                 } 
+
+112.                             } 
+
+113.  
+
+114.                         } catch (e: Exception) { 
+
+115.                             runOnUiThread { 
+
+116.                                 Toast.makeText(this@ResultsActivity, "Помилка: ${e.localizedMessage}", Toast.LENGTH_LONG).show() 
+
+117.                             } 
+
+118.                         } 
+
+119.                     } 
+
+120.                 } 
+
+121.                 .setNegativeButton("Скасувати", null) 
+
+122.                 .show() 
+
+123.         } 
+
+124.  
+
+125.         logoutButton.setOnClickListener { 
+
+126.             getSharedPreferences("APP_PREFS", MODE_PRIVATE).edit().remove("email").remove("role").apply() 
+
+127.             startActivity(Intent(this, LoginActivity::class.java)) 
+
+128.             finish() 
+
+129.         } 
+
+130.  
+
+131.         resultViewModel.getResults(this) 
+
+132.         noteViewModel.getNotes() 
+
+133.     } 
+
+134.  
+
+135.     private fun displayResults(results: List<com.example.apz.models.Result>) { 
+
+136.         resultsContainer.removeAllViews() 
+
+137.  
+
+138.         val header = TextView(this).apply { 
+
+139.             text = "Результати аналізу" 
+
+140.             textSize = 20f 
+
+141.             setPadding(16, 16, 16, 16) 
+
+142.         } 
+
+143.         resultsContainer.addView(header) 
+
+144.  
+
+145.         val sorted = if (sortDescending) results.sortedByDescending { it.AnalysisDate } else results.sortedBy { it.AnalysisDate } 
+
+146.  
+
+147.         for (res in sorted) { 
+
+148.             val view = layoutInflater.inflate(R.layout.result_item, null) 
+
+149.             val resultText = view.findViewById<TextView>(R.id.resultTextView) 
+
+150.             resultText.text = "Стрес: ${res.StressLevel} | Стан: ${res.EmotionalState} (${res.AnalysisDate})" 
+
+151.  
+
+152.             view.setOnLongClickListener { 
+
+153.                 AlertDialog.Builder(this) 
+
+154.                     .setTitle("Видалити результат?") 
+
+155.                     .setMessage("Цей результат буде видалено назавжди.") 
+
+156.                     .setPositiveButton("Так") { _, _ -> 
+
+157.                         resultViewModel.deleteResult(this, res.ResultID) 
+
+158.                     } 
+
+159.                     .setNegativeButton("Скасувати", null) 
+
+160.                     .show() 
+
+161.                 true 
+
+162.             } 
+
+163.             resultsContainer.addView(view) 
+
+164.         } 
+
+165.     } 
+
+166.  
+
+167.     private fun displayNotes(notes: List<com.example.apz.models.Note>) { 
+
+168.         notesContainer.removeAllViews() 
+
+169.  
+
+170.         if (notes.isEmpty()) return 
+
+171.  
+
+172.         val header = TextView(this).apply { 
+
+173.             text = "Ваші нотатки" 
+
+174.             textSize = 20f 
+
+175.             setPadding(16, 32, 16, 16) 
+
+176.         } 
+
+177.         notesContainer.addView(header) 
+
+178.  
+
+179.         for (note in notes) { 
+
+180.             val noteView = layoutInflater.inflate(R.layout.note_item, null) 
+
+181.             val noteTextView = noteView.findViewById<TextView>(R.id.noteTextView) 
+
+182.             val editNoteBtn = noteView.findViewById<Button>(R.id.editNoteButton) 
+
+183.             val deleteNoteBtn = noteView.findViewById<Button>(R.id.deleteNoteButton) 
+
+184.  
+
+185.             noteTextView.text = "${note.Text} (${note.CreationDate})" 
+
+186.  
+
+187.             editNoteBtn.setOnClickListener { 
+
+188.                 showEditNoteDialog(note.NoteID, note.AccountID, note.Text) 
+
+189.             } 
+
+190.  
+
+191.             deleteNoteBtn.setOnClickListener { 
+
+192.                 AlertDialog.Builder(this) 
+
+193.                     .setTitle("Видалити нотатку?") 
+
+194.                     .setMessage("Ця нотатка буде видалена назавжди.") 
+
+195.                     .setPositiveButton("Так") { _, _ -> 
+
+196.                         noteViewModel.deleteNote(note.NoteID) 
+
+197.                     } 
+
+198.                     .setNegativeButton("Скасувати", null) 
+
+199.                     .show() 
+
+200.             } 
+
+201.  
+
+202.             notesContainer.addView(noteView) 
+
+203.         } 
+
+204.     } 
+
+205.  
+
+206.     private fun showEditNoteDialog(noteId: Int?, accountId: Int, oldText: String) { 
+
+207.         val builder = AlertDialog.Builder(this) 
+
+208.         builder.setTitle("Змінити нотатку") 
+
+209.  
+
+210.         val input = EditText(this) 
+
+211.         input.setText(oldText) 
+
+212.         builder.setView(input) 
+
+213.  
+
+214.         builder.setPositiveButton("Зберегти") { _, _ -> 
+
+215.             val newText = input.text.toString() 
+
+216.             if (noteId != null) { 
+
+217.                 noteViewModel.updateNote(noteId, newText) 
+
+218.             } else { 
+
+219.                 noteViewModel.addNote(newText) 
+
+220.             } 
+
+221.         } 
+
+222.         builder.setNegativeButton("Скасувати", null) 
+
+223.         builder.show() 
+
+224.     } 
+
+225. } 
+
+ 
+
+ 
